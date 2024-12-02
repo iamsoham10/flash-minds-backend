@@ -1,6 +1,7 @@
 const express = require("express");
 const connectToDB = require("./config/db");
 const userAuth = require("./routes/userAuth");
+const authenticate = require("./middlewares/authenticate");
 
 const app = express();
 const PORT = process.env.port || 5000;
@@ -12,6 +13,9 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/users", userAuth);
+
+// middleware to authenticate requests
+app.use("/api/auth", authenticate, userAuth);
 
 app.listen(PORT, () => {
   console.log(`Server started at http://localhost:${PORT} 🎉`);

@@ -1,6 +1,8 @@
 const User = require("./../models/User");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const { v4: uuidV4 } = require("uuid");
+require("dotenv").config();
 
 // Register a user
 const registerUser = async (req, res) => {
@@ -39,7 +41,18 @@ const loginUser = async (req, res) => {
     if (!isPassValid) {
       return res.status(401).json({ error: "Invalid password" });
     }
-    res.status(200).json({ message: "User logged in successfully" });
+
+    const token = jwt.sign(
+      {
+        user_id: userEmailExist.user_id,
+        username: userEmailExist.username,
+        email: userEmailExist.email,
+      },
+      process.env.SECRET_KEY,
+      { expiresIn: "6h" }
+    );
+
+    res.status(200).json({ token, message: "User logged in successfully" });
   } catch (err) {
     res.status(500).json({ err: err.message });
   }
