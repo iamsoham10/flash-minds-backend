@@ -1,8 +1,8 @@
 const Card = require("./../models/Card");
 
 const addCard = async (req, res) => {
-  const { term, definition, user_id } = req.body;
-
+  const { term, definition } = req.body;
+  const user_id = req.user.user_id;
   try {
     const card = new Card({
       term,
