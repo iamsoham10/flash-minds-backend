@@ -9,7 +9,7 @@ const addCard = async (req, res) => {
       definition,
       user_id,
     });
-    await card.save();
+    await Card.create(card);
     res.status(201).json({ message: "Card added successfully" });
   } catch (err) {
     res.status(500).json({ error: err.message });
