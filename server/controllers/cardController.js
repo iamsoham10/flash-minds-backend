@@ -17,7 +17,7 @@ const addCard = async (req, res) => {
 };
 
 const deleteCard = async(req, res) => {
-  const {_id} = req.body;
+  const {_id} = req.query;
   try{
     const cardToDelete = await Card.findOne({_id});
     if(!cardToDelete){
