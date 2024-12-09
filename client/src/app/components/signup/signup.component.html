@@ -1,0 +1,25 @@
+<div class="flex justify-center items-center h-screen bg-purple-200">
+    <div class="hidden md:flex h-full w-full">
+        <img src="assets/venom.jpg" alt="">
+    </div>
+    <div class="h-full w-full bg-gradient-to-br from-purple-200 via-orange-200 to-gray-300" [@floatUpAnimation]>
+        <h1 class="text-4xl font-body font-bold flex justify-center items-center text-primary p-8">
+            Sign Up</h1>
+        <div id="inputs" class="">
+            <form [formGroup]="userSignUpForm" class="flex-col justify-center items-center md:mx-20 md:my-12 m-10 ">
+
+                <p class="font-body font-bold text-primary py-2">Email</p>
+                <input type="email" name="email" placeholder="  Enter your email address"
+                    class="bg-gray-300 border rounded-md border-gray-300 w-full h-12 hover:border-gray-500">
+                <p class="font-body font-bold text-primary mt-4 py-2">Username</p>
+                <input type="text" name="username" placeholder="  Enter your username"
+                    class="bg-gray-300 border rounded-md border-gray-300 w-full h-12 hover:border-gray-500">
+                <p class="font-body font-bold text-primary mt-4 py-2">Password</p>
+                <input type="password" name="password" placeholder="  Set a password"
+                    class="bg-gray-300 border rounded-md border-gray-300 w-full h-12 hover:border-gray-500">
+                <button type="submit"
+                    class="bg-secondary w-full h-12 mt-8 font-body text-white font-bold border rounded-lg hover:bg-opacity-90">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
