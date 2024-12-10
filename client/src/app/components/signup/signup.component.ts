@@ -2,8 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-signup',
@@ -21,6 +19,11 @@ import { BrowserModule } from '@angular/platform-browser';
   ]
 })
 export class SignupComponent {
+  isSignUp: boolean = true;
+
+  toggleForm() {
+    this.isSignUp = !this.isSignUp
+  }
 
   userSignUpForm: FormGroup = new FormGroup({
     username: new FormControl("", [Validators.required, Validators.minLength(3)]),
