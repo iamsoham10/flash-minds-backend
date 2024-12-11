@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title></title>
 </head>
 
 <body>
@@ -31,16 +31,54 @@
                         class="flex-col justify-center items-center md:mx-20 md:my-12 m-10 ">
 
                         <p class="font-body font-bold text-primary py-2">Email</p>
-                        <input type="email" name="email" placeholder="Enter your email address"
+                        <input type="email" name="email" placeholder="Enter your email address" formControlName="email"
                             class="p-4 bg-gray-300 border rounded-md border-gray-300 w-full h-12 hover:border-gray-500">
+                        @if (userSignUpForm.get('email')?.touched && userSignUpForm.get('email')?.hasError('required')){
+                        <span class="text-red-600">Email is required</span>
+                        }
+                        @if (userSignUpForm.get('email')?.touched && userSignUpForm.get('email')?.hasError('email')){
+                        <span class="text-red-600">Please enter a valid email address</span>
+                        }
+
                         <p class="font-body font-bold text-primary mt-4 py-2">Username</p>
-                        <input type="text" name="username" placeholder="Enter your username"
+                        <input type="text" name="username" placeholder="Enter your username" formControlName="username"
                             class="p-4 bg-gray-300 border rounded-md border-gray-300 w-full h-12 hover:border-gray-500">
+                        @if(userSignUpForm.get('username')?.touched &&
+                        userSignUpForm.get('username')?.hasError('required')){
+                        <span class="text-red-600">Username is required</span>
+                        }
+                        @if(userSignUpForm.get('username')?.touched &&
+                        userSignUpForm.get('username')?.hasError('minlength')){
+                        <span class="text-red-600">Username should be atleast 3 characters</span>
+                        }
+
                         <p class="font-body font-bold text-primary mt-4 py-2">Password</p>
-                        <input type="password" name="password" placeholder="Set a password"
+                        <input type="password" name="password" placeholder="Set a password" formControlName="password"
                             class="p-4 bg-gray-300 border rounded-md border-gray-300 w-full h-12 hover:border-gray-500">
+                        @if(userSignUpForm.get('password')?.touched &&
+                        userSignUpForm.get('password')?.hasError('required')){
+                        <span class="text-red-600">Password is required</span>
+                        }
+                        @if(userSignUpForm.get('password')?.touched &&
+                        userSignUpForm.get('password')?.hasError('minlength')){
+                        <span class="text-red-600">Password should be atleast 6 characters</span>
+                        }
+                        @if(userSignUpForm.get('password')?.touched &&
+                        userSignUpForm.get('password')?.hasError('pattern') &&
+                        !userSignUpForm.get('password')?.hasError('minlength')){
+                        <span class="text-red-600">Password must contain letters, numbers & symbol</span>
+                        }
+
                         <button type="submit"
-                            class="bg-secondary w-full h-12 mt-8 font-body text-white font-bold border rounded-lg hover:bg-opacity-90">Submit</button>
+                            class="bg-secondary w-full h-12 mt-8 font-body text-white font-bold border rounded-lg hover:bg-opacity-90 active:scale-95 transition-transform"
+                            (click)="saveNewUser()">
+                            @if(isLoadingSignUp){
+                            <i class="fa-solid fa-circle-notch fa-spin text-3xl text-white"></i>
+                            } @else{
+                            Sign Up
+                            }
+                        </button>
+
                     </form>
                     <div class="flex justify-center items-center">
                         <span class="text-primary">Already registered?
@@ -51,15 +89,37 @@
                 }
                 @else{
                 <div id="login-form" [@floatUpAnimation]>
-                    <form class="flex-col justify-center items-center md:mx-20 md:my-12 m-10">
+                    <form [formGroup]="userLoginForm"
+                        class="flex-col justify-center items-center md:mx-20 md:my-12 m-10">
+
                         <p class="font-body font-bold text-primary py-2">Email</p>
-                        <input type="email" name="email" placeholder="Enter your email address"
+                        <input type="email" name="email" placeholder="Enter your email address" formControlName="email"
                             class="p-4 bg-gray-300 border rounded-md border-gray-300 w-full h-12 hover:border-gray-500">
+                        @if(userLoginForm.get('email')?.touched && userLoginForm.get('email')?.hasError('required')){
+                        <span class="text-red-600">Email is required</span>
+                        }
+                        @if(userLoginForm.get('email')?.touched && userLoginForm.get('email')?.hasError('email')){
+                        <span class="text-red-600">Please enter a valid email address</span>
+                        }
+
                         <p class="font-body font-bold text-primary mt-4 py-2">Password</p>
                         <input type="password" name="password" placeholder="Enter your password"
+                            formControlName="password"
                             class="p-4 bg-gray-300 border rounded-md border-gray-300 w-full h-12 hover:border-gray-500">
+                        @if(userLoginForm.get('password')?.touched &&
+                        userLoginForm.get('password')?.hasError('required')){
+                        <span class="text-red-600">Password is required</span>
+                        }
+
                         <button type="submit"
-                            class="bg-secondary w-full h-12 mt-8 font-body text-white font-bold border rounded-lg hover:bg-opacity-90">Submit</button>
+                            class="bg-secondary w-full h-12 mt-8 font-body text-white font-bold border rounded-lg hover:bg-opacity-90 active:scale-95 transition-transform"
+                            (click)="logUser()">
+                            @if(isLoadingLogIn){
+                            <i class="fa-solid fa-circle-notch fa-spin text-3xl text-white"></i>
+                            } @else{
+                            Log In
+                            }
+                        </button>
                     </form>
                     <div class="flex justify-center items-center">
                         <span class="text-primary">New here?
