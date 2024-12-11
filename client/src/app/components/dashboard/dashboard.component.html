@@ -1,1 +1,6 @@
 <p>dashboard works!</p>
+
+@for (item of cardList; track $index) {
+<div>Question - {{item.term}}</div>
+<div>Answer - {{item.definition}}</div>
+}
