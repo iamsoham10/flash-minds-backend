@@ -9,14 +9,18 @@
 
 <body>
     <div class="flex justify-center items-center h-screen">
-        <div class="hidden md:flex h-full w-full">
-            @defer (on viewport) {
-            <img src="assets/venom.jpg" alt="">
-            } @placeholder (minimum 1s){
-            <p>image incoming</p>
-            }
+        <div class="relative hidden md:flex sm:w-full h-full">
+            <img src="assets/cards.jpg" alt="cards" loading="lazy" class="object-cover w-full h-full">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                <p class="text-white text-lg text-center m-16">"The beautiful thing about learning is that nobody can
+                    take it
+                    away from
+                    you." -
+                    B.B. King
+                </p>
+            </div>
         </div>
-        <div class="h-full w-full bg-gradient-to-br from-purple-200 via-orange-200 to-gray-300">
+        <div class="h-full w-full bg-gradient-to-br from-sky-100 via-sky-200 to-sky-100">
             <h1 class="text-4xl font-body font-bold flex justify-center items-center text-primary p-8">
                 @if (isSignUp) {
                 Sign Up
