@@ -12,7 +12,7 @@
         <div class="hidden md:flex h-full w-full">
             @defer (on viewport) {
             <img src="assets/venom.jpg" alt="">
-            } @placeholder (minimum 2s){
+            } @placeholder (minimum 1s){
             <p>image incoming</p>
             }
         </div>
@@ -28,7 +28,7 @@
                 @if (isSignUp) {
                 <div id="signup-form" [@floatUpAnimation]>
                     <form [formGroup]="userSignUpForm"
-                        class="flex-col justify-center items-center md:mx-20 md:my-12 m-10 ">
+                        class="flex-col justify-center items-center md:mx-20 md:my-8 m-10 ">
 
                         <p class="font-body font-bold text-primary py-2">Email</p>
                         <input type="email" name="email" placeholder="Enter your email address" formControlName="email"
@@ -79,6 +79,11 @@
                             }
                         </button>
 
+                        <span *ngIf="cantSignIn"
+                            class="flex justify-center items-center text-red-600 font-body pt-4">Please
+                            try
+                            again</span>
+
                     </form>
                     <div class="flex justify-center items-center">
                         <span class="text-primary">Already registered?
@@ -90,7 +95,7 @@
                 @else{
                 <div id="login-form" [@floatUpAnimation]>
                     <form [formGroup]="userLoginForm"
-                        class="flex-col justify-center items-center md:mx-20 md:my-12 m-10">
+                        class="flex-col justify-center items-center md:mx-20 md:my-8 m-10">
 
                         <p class="font-body font-bold text-primary py-2">Email</p>
                         <input type="email" name="email" placeholder="Enter your email address" formControlName="email"
@@ -120,6 +125,10 @@
                             Log In
                             }
                         </button>
+                        <span *ngIf="cantLogIn"
+                            class="flex justify-center items-center text-red-600 font-body pt-4">Please
+                            try
+                            again</span>
                     </form>
                     <div class="flex justify-center items-center">
                         <span class="text-primary">New here?

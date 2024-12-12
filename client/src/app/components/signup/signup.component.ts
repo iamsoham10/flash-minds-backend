@@ -42,6 +42,7 @@ export class SignupComponent {
   })
 
   isLoadingSignUp = false;
+  cantSignIn = false;
   saveNewUser() {
     if (this.userSignUpForm.valid) {
       this.isLoadingSignUp = true;
@@ -53,6 +54,7 @@ export class SignupComponent {
         },
         (error) => {
           console.error("error saving data 🥹", error);
+          this.cantSignIn = true;
           this.isLoadingSignUp = false;
         }
       )
@@ -62,6 +64,7 @@ export class SignupComponent {
   }
 
   isLoadingLogIn = false;
+  cantLogIn = false;
   logUser() {
     if (this.userLoginForm.valid) {
       this.isLoadingLogIn = true;
@@ -74,6 +77,7 @@ export class SignupComponent {
         },
         (error) => {
           console.error('error logging in 🥹');
+          this.cantLogIn = true;
           this.isLoadingLogIn = false;
         }
       )
