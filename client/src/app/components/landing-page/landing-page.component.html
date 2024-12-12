@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+</head>
+
+<body>
+    <nav class="p-3 flex justify-between items-center bg-background">
+        <a href="#" class="flex gap-2 items-center flex-1 pl-4">
+            <img src="assets/logo.png" alt="logo" class="max-w-12 max-h-12">
+            <span class="text-4xl font-bold font-display text-primary">FlashMinds</span>
+        </a>
+        <div id="nav-menu" class="items-center hidden lg:flex gap-12 pr-8">
+            <a href="#" class="font-display font-semibold text-primary hover:text-secondary">Explore</a>
+            <a href="#" class="font-display font-semibold text-primary hover:text-secondary">My Cards</a>
+            <div class="hidden lg:flex flex-1 justify-end">
+                <button
+                    class="items-center flex gap-2 border border-secondary px-4 py-2 rounded-lg text-secondary hover:border-secondary hover:bg-secondary hover:text-white">
+                    <span>Sign Up</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <main class="bg-background">
+        <div id="hero-container" class="flex flex-col items-center">
+            <h1 class="font-display text-4xl ml-4 font-bold text-primary mt-12 sm:text-6xl">
+                Learn Smarter with
+                FlashMinds
+            </h1>
+            <p class="font-display text-xl py-8 m-4 font-semibold text-primary">Create, study, and share
+                flashcards.
+                Build
+                streaks and stay motivated to achieve your learning goals!</p>
+            <div id="hero-buttons" class="gap-8 mt-10 flex flex-col sm:flex-row">
+                <button class="text-body text-white bg-secondary font-semibold px-8 py-3 rounded-lg">Make a
+                    card</button>
+                <button class="text-body text-white bg-secondary font-semibold px-8 py-3 rounded-lg">Learn</button>
+            </div>
+        </div>
+
+        <!-- main body -->
+        <section class="my-12 px-8 ">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="bg-gray-100 rounded-lg py-6 text-center shadow-lg ">
+                    <i class="fas fa-book text-purple-500 text-4xl mb-4"></i>
+                    <h3 class="font-semibold text-primary font-body">Custom Flashcards</h3>
+                    <p class="text-primary font-body mt-4">Create flashcards tailored to your learning needs.</p>
+                </div>
+                <div class="bg-gray-100 rounded-lg py-6 text-center shadow-lg">
+                    <i class="fas fa-brain text-blue-500 text-4xl mb-4"></i>
+                    <h3 class="font-semibold text-primary font-body">Study Modes</h3>
+                    <p class="text-primary font-body mt-4">Interactive tools like Quiz and Spaced Repetition.</p>
+                </div>
+                <div class="bg-gray-100 rounded-lg py-6 text-center shadow-lg">
+                    <i class="fas fa-fire text-red-500 text-4xl mb-4"></i>
+                    <h3 class="font-semibold text-primary font-body">Stay Motivated</h3>
+                    <p class="text-primary font-body mt-4">Track your streaks and achieve your learning goals.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- <section class="py-16 bg-gray-100">
+            <div class="container mx-auto text-center">
+                <h2 class="text-3xl font-bold mb-6">Why Choose Us?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <i class="fas fa-book text-purple-500 text-4xl mb-4"></i>
+                        <h3 class="text-xl font-bold">Custom Flashcards</h3>
+                        <p class="mt-2 text-gray-600">Create flashcards tailored to your learning needs.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <i class="fas fa-brain text-blue-500 text-4xl mb-4"></i>
+                        <h3 class="text-xl font-bold">Study Modes</h3>
+                        <p class="mt-2 text-gray-600">Interactive tools like Quiz and Spaced Repetition.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg">
+                        <i class="fas fa-fire text-red-500 text-4xl mb-4"></i>
+                        <h3 class="text-xl font-bold">Stay Motivated</h3>
+                        <p class="mt-2 text-gray-600">Track your streaks and achieve your learning goals.</p>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+    </main>
+</body>
+
+</html>
