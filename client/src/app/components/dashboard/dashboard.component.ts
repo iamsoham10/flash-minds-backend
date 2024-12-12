@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GetCardService } from '../../services/get-card.service';
 import { HttpClient } from '@angular/common/http';
+import { jwtDecode } from 'jwt-decode';
+import { Router } from '@angular/router';
+import { SignupComponent } from '../signup/signup.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,16 +18,23 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getAllCards();
   }
-  constructor(private getCards: GetCardService, private http: HttpClient) { }
-  getCardsAPI = "http://localhost:3000/api/cards/readcard?user_id=320dbb16-ca93-47e2-8388-734db51fa750";
+  constructor(private getCardsService: GetCardService, private http: HttpClient, private router: Router) { }
   getAllCards() {
-    this.http.get(this.getCardsAPI).subscribe(
-      (response: any) => {
-        this.cardList = response.cards;
+    const token = localStorage.getItem('jwttoken');
+    if (!token) {
+      this.router.navigate(['/auth']);
+    }
+    const decoded: any = token?.toString() && jwtDecode(token);
+    const user_id = decoded.user_id;
+
+    this.getCardsService.getCards(user_id).subscribe({
+      next: (data) => {
+        this.cardList = data.cards;
+        console.log("Cards fetched successfully: ", data);
       },
-      (error) => {
-        console.log('error in component', error);
+      error: (err) => {
+        console.error('Error fetching cards: ', err);
       }
-    )
+    })
   }
 }

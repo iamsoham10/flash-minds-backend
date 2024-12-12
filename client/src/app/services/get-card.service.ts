@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -6,10 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class GetCardService {
-
+  getCardsAPI = "http://localhost:3000/api/cards/readcard";
   constructor(private http: HttpClient) { }
 
-  // getCards(): Observable<any> {
-  //   return this.http.get(this.getCardsAPI);
-  // }
+  getCards(user_id: string): Observable<any> {
+    const params = new HttpParams().set('user_id', user_id);
+    return this.http.get(this.getCardsAPI, { params });
+  }
 }

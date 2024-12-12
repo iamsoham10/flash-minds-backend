@@ -49,7 +49,7 @@ const loginUser = async (req, res) => {
         email: userEmailExist.email,
       },
       process.env.SECRET_KEY,
-      { expiresIn: "6h" }
+      { expiresIn: "12h" }
     );
 
     res.status(200).json({ token, message: "User logged in successfully" });
