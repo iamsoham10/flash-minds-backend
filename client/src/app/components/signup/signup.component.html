@@ -24,7 +24,11 @@
             </div>
         </div>
         <div class="h-full w-full bg-gradient-to-br from-sky-100 via-sky-200 to-sky-100">
-            <h1 class="text-4xl font-body font-bold flex justify-center items-center text-primary p-8">
+            <a href="#" class="flex gap-2 justify-center items-center my-6">
+                <img src="assets/logo.png" alt="logo" class="max-w-12 max-h-12">
+                <span class="text-4xl font-bold font-display text-primary sm:text-5xl">FlashMinds</span>
+            </a>
+            <h1 class="text-3xl font-body font-bold flex justify-center items-center text-primary mt-12">
                 @if (isSignUp) {
                 Sign Up
                 } @else{
@@ -34,8 +38,7 @@
             <div id="forms">
                 @if (isSignUp) {
                 <div id="signup-form" [@floatUpAnimation]>
-                    <form [formGroup]="userSignUpForm"
-                        class="flex-col justify-center items-center md:mx-20 md:my-8 m-10 ">
+                    <form [formGroup]="userSignUpForm" class="flex-col justify-center items-center md:mx-20 mx-10 mb-4">
 
                         <p class="font-body font-bold text-primary py-2">Email</p>
                         <input type="email" name="email" placeholder="Enter your email address" formControlName="email"
@@ -101,8 +104,7 @@
                 }
                 @else{
                 <div id="login-form" [@floatUpAnimation]>
-                    <form [formGroup]="userLoginForm"
-                        class="flex-col justify-center items-center md:mx-20 md:my-8 m-10">
+                    <form [formGroup]="userLoginForm" class="flex-col justify-center items-center md:mx-20 mx-10 mb-4">
 
                         <p class="font-body font-bold text-primary py-2">Email</p>
                         <input type="email" name="email" placeholder="Enter your email address" formControlName="email"
