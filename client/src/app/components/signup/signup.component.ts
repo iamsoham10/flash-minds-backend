@@ -72,6 +72,7 @@ export class SignupComponent {
         (response) => {
           console.log("logged in 😎");
           this.isLoadingLogIn = false;
+          localStorage.removeItem('jwttoken');
           localStorage.setItem('jwttoken', response.token);
           this.router.navigate(['/dashboard']);
         },

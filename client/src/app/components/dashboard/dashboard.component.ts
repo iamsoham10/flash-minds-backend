@@ -3,7 +3,6 @@ import { GetCardService } from '../../services/get-card.service';
 import { HttpClient } from '@angular/common/http';
 import { jwtDecode } from 'jwt-decode';
 import { Router } from '@angular/router';
-import { SignupComponent } from '../signup/signup.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,6 +24,15 @@ export class DashboardComponent implements OnInit {
       this.router.navigate(['/auth']);
     }
     const decoded: any = token?.toString() && jwtDecode(token);
+    const currentTime = Date.now() / 1000;
+    if (decoded.exp < currentTime) {
+      console.log('jwt token expired');
+      this.router.navigate(['/auth']);
+    }
+    else {
+      console.log('token is fresh');
+    }
+
     const user_id = decoded.user_id;
 
     this.getCardsService.getCards(user_id).subscribe({

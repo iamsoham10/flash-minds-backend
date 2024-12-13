@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
@@ -14,7 +14,8 @@
             <span class="text-4xl font-bold font-display text-primary">FlashMinds</span>
         </a>
         <div id="nav-menu" class="items-center hidden md:flex gap-12 pr-8">
-            <a href="#" class="font-display font-semibold text-primary hover:text-secondary">Explore</a>
+            <a href="#" class="font-display font-semibold text-primary hover:text-secondary scroll-smooth"
+                href="#explore">Explore</a>
             <a href="#" class="font-display font-semibold text-primary hover:text-secondary">My Cards</a>
             <div class="hidden md:flex flex-1 justify-end">
                 <button routerLink="/auth"
@@ -50,7 +51,7 @@
         </div>
 
     </nav>
-    <main class="bg-background" [@floatUp]>
+    <main class="bg-background scroll-smooth" [@floatUp]>
         <div id="hero-container" class="flex flex-col items-center">
             <h1 class="font-display text-4xl ml-4 font-bold text-primary mt-12 sm:text-6xl">
                 Learn Smarter with
@@ -61,9 +62,11 @@
                 Build
                 streaks and stay motivated to achieve your learning goals!</p>
             <div id="hero-buttons" class="gap-8 mt-10 flex flex-col sm:flex-row">
-                <button class="text-body text-white bg-secondary font-semibold px-8 py-3 rounded-lg">Make a
+                <button routerLink="/auth"
+                    class="text-body text-white bg-secondary font-semibold px-8 py-3 rounded-lg">Make a
                     card</button>
-                <button class="text-body text-white bg-secondary font-semibold px-8 py-3 rounded-lg">Learn</button>
+                <button routerLink="/auth"
+                    class="text-body text-white bg-secondary font-semibold px-8 py-3 rounded-lg">Learn</button>
             </div>
         </div>
         @defer (on viewport) {
@@ -166,7 +169,7 @@
         <section id="study-modes" class="py-16 bg-sub_card">
             <div class="container mx-auto px-8">
                 <h2 class="text-4xl font-semibold font-display text-primary text-center mb-12">
-                    Explore Our Study Modes
+                    Our Study Modes
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
                     <div class="bg-white rounded-lg p-6 shadow-lg">
