@@ -14,6 +14,10 @@ const cardSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  username: {
+    type: String,
+    required: true,
+  },
 });
 
 const Card = mongoose.model("Card", cardSchema);
