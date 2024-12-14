@@ -9,29 +9,7 @@
 </head>
 
 <body class="bg-gray-100 font-sans">
-    <!-- Navbar -->
-    <nav class="p-3 flex justify-between items-center bg-background">
-        <a href="#" class="flex gap-2 items-center flex-1 pl-2">
-            <img src="assets/logo.png" alt="logo" class="max-w-12 max-h-12">
-            <span class="text-4xl font-bold font-display text-primary">FlashMinds</span>
-        </a>
-        <div id="nav-menu" class="items-center hidden md:flex gap-12 pr-8">
-            <div class="flex gap-2 items-center">
-                <i class="fa-solid fa-fire text-orange-600 text-3xl"></i>
-                <p>Streak: 3 days</p>
-            </div>
-            <a href="#" class="font-display font-semibold text-primary hover:text-secondary">Explore</a>
-            <a href="#" class="font-display font-semibold text-primary hover:text-secondary">My Cards</a>
-            <button routerLink="/auth" (click)="logOutUser()"
-                class="items-center flex gap-2 border border-secondary px-4 py-2 rounded-lg text-secondary hover:border-secondary hover:bg-secondary hover:text-white">
-                <span>Log Out</span>
-            </button>
-        </div>
-        <button class="md:hidden p-2 text-xl">
-            <i class="fa-solid fa-bars text-primary"></i>
-        </button>
-    </nav>
-
+    <app-navbar></app-navbar>
     <!-- Dashboard Content -->
     <main class="container mx-auto px-8 py-12">
         <h1 class="text-4xl font-bold font-display text-primary mb-8">Dashboard</h1>
@@ -94,6 +72,7 @@
     <footer class="bg-gray-800 text-gray-400 py-8 text-center">
         <p>© 2024 Developed By Soham Chitale</p>
     </footer>
+    <router-outlet></router-outlet>
 </body>
 
 </html>

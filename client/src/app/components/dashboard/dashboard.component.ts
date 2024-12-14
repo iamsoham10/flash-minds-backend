@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { GetCardService } from '../../services/get-card.service';
 import { HttpClient } from '@angular/common/http';
 import { jwtDecode } from 'jwt-decode';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, NavbarComponent, RouterOutlet],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -52,8 +53,5 @@ export class DashboardComponent implements OnInit {
     this.isMenuOpened = !this.isMenuOpened;
   }
 
-  logOutUser() {
-    localStorage.removeItem('jwttoken');
-    this.router.navigate(['/auth']);
-  }
+
 }
