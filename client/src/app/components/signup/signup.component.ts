@@ -84,9 +84,4 @@ export class SignupComponent {
       )
     }
   }
-
-  logOutUser() {
-    localStorage.removeItem('jwttoken');
-    console.log('logged out successfully');
-  }
 }
