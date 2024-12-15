@@ -9,6 +9,7 @@ const addCard = async (req, res) => {
       const newCard = new Card({
         term: card.term,
         definition: card.definition,
+        subject: card.subject,
         user_id,
         username,
       });
