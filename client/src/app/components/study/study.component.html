@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study</title>
+</head>
+
+<body>
+    <app-navbar></app-navbar>
+    <h1 class="text-4xl font-display text-primary ml-12 mt-12 font-bold">{{cardList[0]?.subject}}</h1>
+
+
+    <div (click)="toggleFlip()">
+        <div class="card h-64 w-1/2 mt-12 ml-12 text-center" [@flipState]="flip">
+            <!-- Front (Question) -->
+            <div class="card-face front bg-gray-300 p-8">
+                <p class="text-center font-bold">{{ cardList[currentCardIndex]?.term }}</p>
+            </div>
+            <!-- Back (Answer) -->
+            <div class="card-face back p-8">
+                <p class="text-center font-bold">{{ cardList[currentCardIndex]?.definition }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="flex items-center justify-center gap-24 mt-6 ml-12 text-xl w-1/2">
+        <div>
+            <button (click)="previousCard()" class="bg-gray-300 rounded-full p-4 flex justify-center items-center">
+                <i class="fa-solid fa-arrow-left"></i>
+            </button>
+        </div>
+        <div>
+            <button (click)="nextCard()" class="bg-gray-300 rounded-full p-4 flex justify-center items-center">
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+</body>
+
+</html>
