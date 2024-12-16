@@ -34,4 +34,8 @@ export class ExploreComponent implements OnInit {
       }
     })
   }
+
+  getUniqueSubjects(cardList: any[]): string[] {
+    return [...new Set(cardList.map(card => card.subject))];
+  }
 }

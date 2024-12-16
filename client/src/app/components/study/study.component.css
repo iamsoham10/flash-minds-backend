@@ -16,6 +16,5 @@
 }
 
 .back {
-  background-color: #f3f4f6;
   transform: rotateY(180deg); /* Start flipped */
 }
