@@ -9,7 +9,8 @@
 
 <body>
     <app-navbar></app-navbar>
-    <h1 class="text-4xl font-display text-primary ml-12 mt-12 font-bold">{{cardList[0]?.subject}}</h1>
+    <h1 class="text-4xl font-display text-primary ml-12 mt-12 font-bold">{{filteredCardList[currentCardIndex]?.subject}}
+    </h1>
 
 
 
@@ -24,11 +25,12 @@
         <div class="card h-64 w-3/4 mt-12 ml-12 text-center" [@flipState]="flip">
             <!-- Front (Question) -->
             <div class="card-face front bg-card p-8 rounded-lg">
-                <p class="text-center font-bold">{{ cardList[currentCardIndex]?.term }}</p>
+                <p class="text-center font-bold font-body text-2xl">{{filteredCardList[currentCardIndex]?.term}}</p>
             </div>
             <!-- Back (Answer) -->
             <div class="card-face back bg-sub_card p-8 rounded-lg">
-                <p class="text-center font-bold">{{ cardList[currentCardIndex]?.definition }}</p>
+                <p class="text-center font-bold font-body text-xl">{{ filteredCardList[currentCardIndex]?.definition }}
+                </p>
             </div>
         </div>
     </div>

@@ -18,7 +18,8 @@
                     <p class="text-2xl font-semibold text-primary pt-8 text-center">Science</p>
                     <div class="flex flex-col font-body text-xl gap-6 m-6 items-start"
                         *ngFor="let subject of getUniqueSubjects(cardList)">
-                        <button routerLink="/dashboard/explore/study" class="hover:text-secondary">{{subject}}</button>
+                        <button [routerLink]="['/dashboard/explore/study', subject]"
+                            class="hover:text-secondary">{{subject}}</button>
                     </div>
 
                 </div>

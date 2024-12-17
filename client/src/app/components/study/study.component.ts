@@ -5,6 +5,7 @@ import { GetCardService } from '../../services/get-card.service';
 import { HttpClient } from '@angular/common/http';
 import { jwtDecode } from 'jwt-decode';
 import { CommonModule } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-study',
@@ -33,12 +34,14 @@ import { CommonModule } from '@angular/common';
 
 })
 export class StudyComponent implements OnInit {
+  filteredCardList: any[] = [];
+  currentCardIndex = 0;
+  subject: string = '';
   ngOnInit(): void {
     this.getAllCards();
   }
-  constructor(private getCardService: GetCardService, private http: HttpClient) { }
+  constructor(private getCardService: GetCardService, private route: ActivatedRoute,) { }
   flip: string = 'front';
-  currentCardIndex = 0;
 
   toggleFlip() {
     this.flip = this.flip === 'front' ? 'back' : 'front';
@@ -68,7 +71,9 @@ export class StudyComponent implements OnInit {
     this.getCardService.getCards(user_id).subscribe({
       next: (data) => {
         this.cardList = data.cards;
-        console.log('cards fetched successfully', this.cardList);
+        this.subject = this.route.snapshot.paramMap.get('subject') || '';
+        this.filteredCardList = this.cardList.filter(card => card.subject === this.subject);
+        console.log('Filtered cards: ', this.filteredCardList);
       },
       error: (err) => {
         console.log('error fetching', err);
