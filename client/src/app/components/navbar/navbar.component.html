@@ -21,7 +21,8 @@
             </div>
             <button routerLink="/dashboard/explore"
                 class="font-display font-semibold text-primary hover:text-secondary">Explore</button>
-            <a href="#" class="font-display font-semibold text-primary hover:text-secondary">My Cards</a>
+            <button routerLink="/create-set"
+                class="font-display font-semibold text-primary hover:text-secondary">Create</button>
             <button (click)="logOutUser()"
                 class="items-center flex gap-2 border border-secondary px-4 py-2 rounded-lg text-secondary hover:border-secondary hover:bg-secondary hover:text-white">
                 <span>Log Out</span>
@@ -45,7 +46,8 @@
             <div class="p-4 flex flex-col gap-4">
                 <button routerLink="/dashboard/explore"
                     class="font-display text-lg text-primary hover:bg-gray-200 p-4 rounded-lg text-start">Explore</button>
-                <a href="#" class="font-display text-lg text-primary hover:bg-gray-200 p-4 rounded-lg">My Cards</a>
+                <button routerLink="/create-set"
+                    class="font-display text-lg text-primary hover:bg-gray-200 p-4 rounded-lg text-start">Create</button>
                 <div class="h-[1px] bg-gray-800 m-2"></div>
                 <button (click)="logOutUser()"
                     class="items-center flex gap-2 p-4 rounded-lg text-primary hover:bg-gray-200">
