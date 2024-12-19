@@ -16,7 +16,9 @@
         <div id="nav-menu" class="items-center hidden md:flex gap-12 pr-8">
             <a href="#" class="font-display font-semibold text-primary hover:text-secondary scroll-smooth"
                 href="#explore">Explore</a>
-            <a href="#" class="font-display font-semibold text-primary hover:text-secondary">My Cards</a>
+            <button routerLink="/dashboard">
+                <a class=" font-display font-semibold text-primary hover:text-secondary">My Cards</a>
+            </button>
             <div class="hidden md:flex flex-1 justify-end">
                 <button routerLink="/auth"
                     class="items-center flex gap-2 border border-secondary px-4 py-2 rounded-lg text-secondary hover:border-secondary hover:bg-secondary hover:text-white">
@@ -65,7 +67,7 @@
                 <button routerLink="/auth"
                     class="text-body text-white bg-secondary font-semibold px-8 py-3 rounded-lg">Make a
                     card</button>
-                <button routerLink="/auth"
+                <button routerLink="/dashboard"
                     class="text-body text-white bg-secondary font-semibold px-8 py-3 rounded-lg">Learn</button>
             </div>
         </div>
