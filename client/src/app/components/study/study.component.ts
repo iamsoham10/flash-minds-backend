@@ -50,7 +50,7 @@ export class StudyComponent implements OnInit {
   nextCard() {
     if (this.currentCardIndex < this.cardList.length - 1) {
       this.currentCardIndex++;
-    } else {
+    } else if (this.currentCardIndex >= this.cardList.length - 1) {
       this.currentCardIndex = 0;
     }
   }
@@ -59,7 +59,7 @@ export class StudyComponent implements OnInit {
     if (this.currentCardIndex > 0) {
       this.currentCardIndex--;
     } else {
-      this.currentCardIndex = this.cardList.length - 1;
+      this.currentCardIndex = this.cardList.length;
     }
   }
 

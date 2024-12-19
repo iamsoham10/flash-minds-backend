@@ -14,7 +14,7 @@
 
 
 
-    <div class="flex h-1/2 ml-12 mt-8 gap-8">
+    <div class="flex h-1/2 w-3/6 ml-12 mt-8 gap-16">
         <button class="bg-gray-300 h-32 w-52 rounded-lg">Test</button>
         <button class="bg-gray-300 h-32 w-52 rounded-lg">Learn</button>
         <button class="bg-gray-300 h-32 w-52 rounded-lg">Match</button>
@@ -22,7 +22,7 @@
 
 
     <div (click)="toggleFlip()">
-        <div class="card h-64 w-3/4 mt-12 ml-12 text-center" [@flipState]="flip">
+        <div class="card h-64 w-3/6 mt-12 ml-12 text-center" [@flipState]="flip">
             <!-- Front (Question) -->
             <div class="card-face front bg-card p-8 rounded-lg">
                 <p class="text-center font-bold font-body text-2xl">{{filteredCardList[currentCardIndex]?.term}}</p>
@@ -34,16 +34,19 @@
             </div>
         </div>
     </div>
-    <div class="flex items-center justify-center gap-24 mt-6 ml-12 text-xl w-3/4">
+    <div class="flex items-center justify-center gap-24 mt-6 ml-12 text-xl w-3/6">
         <div>
             <button (click)="previousCard()"
-                class="bg-gray-400 rounded-full p-4 flex justify-center items-center hover:opacity-80">
+                class="bg-gray-400 rounded-full p-4 flex justify-center items-center hover:opacity-80"
+                [disabled]="currentCardIndex === 0">
                 <i class="fa-solid fa-arrow-left text-primary hover:text-secondary"></i>
             </button>
         </div>
+        <p>{{ currentCardIndex + 1 }} / {{ filteredCardList.length }}</p>
         <div>
             <button (click)="nextCard()"
-                class="bg-gray-400 rounded-full p-4 flex justify-center items-center hover:opacity-80">
+                class="bg-gray-400 rounded-full p-4 flex justify-center items-center hover:opacity-80"
+                [disabled]="currentCardIndex === filteredCardList.length - 1">
                 <i class="fa-solid fa-arrow-right text-primary hover:text-secondary"></i>
             </button>
         </div>
