@@ -7,51 +7,63 @@
     <title>Study</title>
 </head>
 
-<body>
+<body class="bg-gray-50 text-gray-800 font-sans">
     <app-navbar></app-navbar>
-    <h1 class="text-4xl font-display text-primary ml-12 mt-12 font-bold">{{filteredCardList[currentCardIndex]?.subject}}
+
+    <!-- Subject Heading -->
+    <h1 class="flex items-center justify-center text-4xl font-display text-primary mt-12 font-bold text-center px-4">
+        {{filteredCardList[currentCardIndex]?.subject}}
     </h1>
 
-
-
-    <div class="flex h-1/2 w-3/6 ml-12 mt-8 gap-16">
-        <button class="bg-gray-300 h-32 w-52 rounded-lg">Test</button>
-        <button class="bg-gray-300 h-32 w-52 rounded-lg">Learn</button>
-        <button class="bg-gray-300 h-32 w-52 rounded-lg">Match</button>
+    <!-- Buttons Section -->
+    <div class="flex justify-center items-center flex-col md:flex-row h-auto mt-8 gap-16 px-4">
+        <button class="bg-purple-500 h-32 w-52 rounded-lg hover:opacity-80 font-body text-xl text-white">
+            Test
+        </button>
+        <button class="bg-blue-500 h-32 w-52 rounded-lg hover:opacity-80 font-body text-xl text-white">
+            Learn
+        </button>
+        <button class="bg-red-500 h-32 w-52 rounded-lg hover:opacity-80 font-body text-xl text-white">
+            Match
+        </button>
     </div>
 
-
-    <div (click)="toggleFlip()">
-        <div class="card h-64 w-3/6 mt-12 ml-12 text-center" [@flipState]="flip">
+    <!-- Flashcard Section -->
+    <div (click)="toggleFlip()" class="flex justify-center items-center mt-12 px-4">
+        <div class="card h-64 w-full max-w-3xl text-center" [@flipState]="flip">
             <!-- Front (Question) -->
-            <div class="card-face front bg-card p-8 rounded-lg">
-                <p class="text-center font-bold font-body text-2xl">{{filteredCardList[currentCardIndex]?.term}}</p>
+            <div class="card-face front bg-card p-8 rounded-lg shadow-md">
+                <p class="text-center font-bold font-body text-2xl">
+                    {{filteredCardList[currentCardIndex]?.term}}
+                </p>
             </div>
             <!-- Back (Answer) -->
-            <div class="card-face back bg-sub_card p-8 rounded-lg">
-                <p class="text-center font-bold font-body text-xl">{{ filteredCardList[currentCardIndex]?.definition }}
+            <div class="card-face back bg-sub_card p-8 rounded-lg shadow-md">
+                <p class="text-center font-bold font-body text-xl">
+                    {{ filteredCardList[currentCardIndex]?.definition }}
                 </p>
             </div>
         </div>
     </div>
-    <div class="flex items-center justify-center gap-24 mt-6 ml-12 text-xl w-3/6">
-        <div>
-            <button (click)="previousCard()"
-                class="bg-gray-400 rounded-full p-4 flex justify-center items-center hover:opacity-80"
-                [disabled]="currentCardIndex === 0">
-                <i class="fa-solid fa-arrow-left text-primary hover:text-secondary"></i>
-            </button>
-        </div>
-        <p>{{ currentCardIndex + 1 }} / {{ filteredCardList.length }}</p>
-        <div>
-            <button (click)="nextCard()"
-                class="bg-gray-400 rounded-full p-4 flex justify-center items-center hover:opacity-80"
-                [disabled]="currentCardIndex === filteredCardList.length - 1">
-                <i class="fa-solid fa-arrow-right text-primary hover:text-secondary"></i>
-            </button>
-        </div>
-    </div>
 
+    <!-- Navigation Section -->
+    <div class="flex flex-wrap items-center justify-center gap-8 mt-6 mb-8 text-xl px-4">
+        <button (click)="previousCard()"
+            class="bg-gray-400 rounded-full p-4 flex justify-center items-center hover:opacity-80 focus:ring-4 focus:ring-gray-300 transition"
+            [disabled]="currentCardIndex === 0">
+            <i class="fa-solid fa-arrow-left text-primary hover:text-secondary"></i>
+        </button>
+
+        <p class="text-center text-xl text-gray-700">
+            {{ currentCardIndex + 1 }} / {{ filteredCardList.length }}
+        </p>
+
+        <button (click)="nextCard()"
+            class="bg-gray-400 rounded-full p-4 flex justify-center items-center hover:opacity-80 focus:ring-4 focus:ring-gray-300 transition"
+            [disabled]="currentCardIndex === filteredCardList.length - 1">
+            <i class="fa-solid fa-arrow-right text-primary hover:text-secondary"></i>
+        </button>
+    </div>
 </body>
 
 </html>
