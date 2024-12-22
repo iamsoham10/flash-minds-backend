@@ -39,14 +39,6 @@
                                     <input type="text" name="definition" placeholder="Enter answer"
                                         formControlName="definition"
                                         class="bg-gray-300 rounded-lg px-4 py-6 w-full md:w-1/2">
-                                    <!-- <div *ngIf="card.get('term')?.touched && card.get('term')?.hasError('required')"
-                                        class="text-red-600 mt-2">
-                                        Please fill out the term field.
-                                    </div>
-                                    <div *ngIf="card.get('definition')?.touched && card.get('definition')?.hasError('required')"
-                                        class="text-red-600 mt-2">
-                                        Please fill out the definition field.
-                                    </div> -->
                                 </div>
                                 @if(card.get('term')?.touched && card.get('term')?.hasError('required') ||
                                 card.get('definition')?.touched && card.get('definition')?.hasError('required')){

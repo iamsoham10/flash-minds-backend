@@ -4,7 +4,7 @@ import { GetCardService } from '../../services/get-card.service';
 import { HttpClient } from '@angular/common/http';
 import { jwtDecode } from 'jwt-decode';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 
 @Component({
@@ -18,12 +18,17 @@ export class ExploreComponent implements OnInit {
   ngOnInit(): void {
     this.getAllCards();
   }
-  constructor(private getCardService: GetCardService, private http: HttpClient) { }
+  constructor(private getCardService: GetCardService, private http: HttpClient, private router: Router) { }
   cardList: any[] = [];
   categorizedSubjects: { [key: string]: string[] } = {};
   getAllCards() {
     const token = localStorage.getItem('jwttoken');
     const decodedToken: any = token?.toString() && jwtDecode(token);
+    const currentTime = Date.now() / 1000;
+    if (decodedToken.exp < currentTime) {
+      localStorage.removeItem('jwttoken');
+      this.router.navigate(['/auth']);
+    }
     const user_id = decodedToken.user_id;
     this.getCardService.getCards(user_id).subscribe({
       next: (data) => {

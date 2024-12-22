@@ -27,6 +27,11 @@ export class DashboardComponent implements OnInit {
   getAllCards() {
     const token = localStorage.getItem('jwttoken');
     const decodedToken: any = token?.toString() && jwtDecode(token);
+    const currentTime = Date.now() / 1000;
+    if (decodedToken.exp < currentTime) {
+      localStorage.removeItem('jwttoken');
+      this.router.navigate(['/auth']);
+    }
     const user_id = decodedToken.user_id;
     this.CurrentUserName = decodedToken.username;
     this.getCardsService.getCards(user_id).subscribe({

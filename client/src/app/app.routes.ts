@@ -7,5 +7,5 @@ export const routes: Routes = [
     { path: "dashboard", loadComponent: () => import("./components/dashboard/dashboard.component").then((c) => c.DashboardComponent), canActivate: [authGuard] },
     { path: "dashboard/explore", loadComponent: () => import("./components/explore/explore.component").then((c) => c.ExploreComponent), canActivate: [authGuard] },
     { path: "dashboard/explore/study/:subject", loadComponent: () => import("./components/study/study.component").then((c) => c.StudyComponent), canActivate: [authGuard] },
-    { path: "create-set", loadComponent: () => import("./components/create-set/create-set.component").then((c) => c.CreateSetComponent), canActivate: [authGuard] }
+    { path: "create-set", loadComponent: () => import("./components/create-set/create-set.component").then((c) => c.CreateSetComponent), canActivate: [authGuard] },
 ];
