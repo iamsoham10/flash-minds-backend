@@ -6,6 +6,7 @@ import { jwtDecode } from 'jwt-decode';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { StreakService } from '../../services/streak.service';
 
 @Component({
   selector: 'app-study',
@@ -39,8 +40,9 @@ export class StudyComponent implements OnInit {
   subject: string = '';
   quizTestForm!: FormGroup;
   flip: string = 'front';
+  streak = { count: 0 };
 
-  constructor(private getCardService: GetCardService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder) {
+  constructor(private getCardService: GetCardService, private route: ActivatedRoute, private router: Router, private fb: FormBuilder, private streakService: StreakService) {
     this.quizTestForm = this.fb.group({
       answers: this.fb.array(
         this.filteredCardList.map(() => this.fb.control('', Validators.required))
@@ -48,9 +50,16 @@ export class StudyComponent implements OnInit {
     });
   }
 
+
   ngOnInit(): void {
     this.getAllCards();
+    const token = localStorage.getItem('jwttoken');
+    const decodedToken: any = token?.toString() && jwtDecode(token);
+    const user_id = decodedToken.user_id;
+    this.streak = this.streakService.getUserStreak(user_id);
   }
+
+  // quiz test mode form
   get answers(): FormArray {
     return this.quizTestForm.get('answers') as FormArray<FormControl>;
   }
@@ -66,7 +75,14 @@ export class StudyComponent implements OnInit {
     this.flip = this.flip === 'front' ? 'back' : 'front';
   }
 
+
   nextCard() {
+    const token = localStorage.getItem('jwttoken');
+    const decodedToken: any = token?.toString() && jwtDecode(token);
+    const user_id = decodedToken.user_id;
+    this.streakService.markStreak(user_id);
+    this.streak = this.streakService.getUserStreak(user_id);
+    console.log(this.streak);
     if (this.currentCardIndex < this.cardList.length - 1) {
       this.currentCardIndex++;
     } else if (this.currentCardIndex >= this.cardList.length - 1) {
@@ -106,10 +122,6 @@ export class StudyComponent implements OnInit {
     })
   }
 
-  // testForm = new FormGroup({
-  //   answer: new FormControl('', Validators.required),
-  // });
-
   showTestDiv = false;
   showTestResultDiv = false;
   showCardDiv = true;
@@ -118,6 +130,7 @@ export class StudyComponent implements OnInit {
   incorrectTestAnswers = 0;
   testPercentage = 0;
 
+  // quiz test mode score calculation
   testResult() {
     if (this.quizTestForm.valid) {
       const submittedAnswers = this.quizTestForm.value.answers;

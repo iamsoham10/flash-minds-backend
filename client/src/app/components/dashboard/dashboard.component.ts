@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { GetCardService } from '../../services/get-card.service';
 import { HttpClient } from '@angular/common/http';
 import { jwtDecode } from 'jwt-decode';
 import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from "../navbar/navbar.component";
+import { StreakService } from '../../services/streak.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,11 +19,15 @@ export class DashboardComponent implements OnInit {
   filteredCardList: any[] = [];
   CurrentUserName: string = '';
   subject: string = '';
-
   ngOnInit(): void {
     this.getAllCards();
   }
   constructor(private getCardsService: GetCardService, private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
+  streakService = inject(StreakService);
+  token = localStorage.getItem('jwttoken');
+  decodedToken: any = this.token?.toString() && jwtDecode(this.token);
+  user_id = this.decodedToken.user_id;
+  streak = this.streakService.getStreakSignal(this.user_id);
 
   getAllCards() {
     const token = localStorage.getItem('jwttoken');

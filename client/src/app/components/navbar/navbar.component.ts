@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { StreakService } from '../../services/streak.service';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-navbar',
@@ -11,6 +13,11 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class NavbarComponent {
   constructor(private router: Router) { }
+  streakService = inject(StreakService);
+  token = localStorage.getItem('jwttoken');
+  decodedToken: any = this.token?.toString() && jwtDecode(this.token);
+  user_id = this.decodedToken.user_id;
+  streak = this.streakService.getStreakSignal(this.user_id);
   logOutUser() {
     localStorage.removeItem('jwttoken');
     this.router.navigate(['/auth']);
