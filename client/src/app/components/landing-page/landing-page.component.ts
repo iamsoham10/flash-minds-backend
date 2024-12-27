@@ -22,4 +22,31 @@ export class LandingPageComponent {
   toggleMenu() {
     this.isMenuOpened = !this.isMenuOpened;
   }
+  navLinks = [
+    { label: 'Explore', path: '#explore' },
+    { label: 'My Cards', path: '/dashboard' }
+  ];
+
+  heroButtons = [
+    { label: 'Make a card', path: '/create-set' },
+    { label: 'Learn', path: '/dashboard' }
+  ];
+
+  features = [
+    { icon: 'fas fa-book', iconColor: 'text-purple-500', title: 'Custom Flashcards', description: 'Create flashcards tailored to your learning needs.' },
+    { icon: 'fas fa-brain', iconColor: 'text-blue-500', title: 'Study Modes', description: 'Interactive tools like Quiz and Spaced Repetition.' },
+    { icon: 'fas fa-fire', iconColor: 'text-red-500', title: 'Stay Motivated', description: 'Track your streaks and achieve your learning goals.' }
+  ];
+
+  exploreCards = [
+    { title: 'Computer Engineering', count: 29, initial: 'J', author: 'John Doe' },
+    { title: 'English', count: 21, initial: 'G', author: 'George Doe' },
+    { title: 'Data Link Layer', count: 112, initial: 'J', author: 'Jane Doe' }
+  ];
+
+  studyModes = [
+    { icon: 'fas fa-brain', iconColor: 'text-purple-500', title: 'Quiz Mode', description: 'Test your knowledge with interactive quizzes. Perfect for quick reviews and focused learning.' },
+    { icon: 'fas fa-history', iconColor: 'text-blue-500', title: 'Spaced Repetition', description: 'Master concepts with scientifically proven spaced repetition techniques for long-term retention.' },
+    { icon: 'fas fa-columns', iconColor: 'text-red-500', title: 'Match Mode', description: 'Match terms with their definitions in a timed challenge. A fun and fast-paced way to learn.' }
+  ];
 }
