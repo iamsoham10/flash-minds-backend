@@ -131,7 +131,9 @@ export class StudyComponent implements OnInit {
   testPercentage = 0;
 
   // quiz test mode score calculation
+  isResultCalculated = false;
   testResult() {
+    this.isResultCalculated = true;
     if (this.quizTestForm.valid) {
       const submittedAnswers = this.quizTestForm.value.answers;
       this.filteredCardList.forEach((card, index) => {
@@ -143,6 +145,7 @@ export class StudyComponent implements OnInit {
       });
       this.totalTestQuestions = this.filteredCardList.length;
       this.testPercentage = parseFloat(((this.correctTestAnswers / this.totalTestQuestions) * 100).toFixed(2));
+      this.isResultCalculated = false;
       this.showTestResultDiv = true;
     } else {
       console.log('Please answer all questions');
@@ -153,4 +156,89 @@ export class StudyComponent implements OnInit {
     this.showTestDiv = true;
     this.showCardDiv = false;
   }
+
+  // match mode
+  showMatchDiv = false;
+  matchCards: any[] = [];
+  showMatch() {
+    console.log(this.filteredCardList);
+    this.showMatchDiv = true;
+    this.showCardDiv = false;
+    this.matchCards = this.getRandomCards(this.filteredCardList);
+    console.log("selected random cards: ", this.matchCards);
+    this.initializeMatchMode();
+    console.log('shuffled studd: ', this.shuffledPairs);
+  }
+
+  // this function selects a random element from the array and then shuffles the array and finally returns the shuffled array
+  shuffleArray(cardArray: any[]): Array<[]> {
+    const shuffledArray = cardArray.slice()
+    for (let i = shuffledArray.length - 1; i > 0; i--) {
+      const randomIndex = Math.floor(Math.random() * (i + 1));
+      [shuffledArray[i], shuffledArray[randomIndex]] = [shuffledArray[randomIndex], shuffledArray[i]];
+    }
+    return shuffledArray;
+  }
+
+  getRandomCards(filteredCardsArray: any) {
+    if (filteredCardsArray.length > 6) {
+      const shuffled = this.shuffleArray(filteredCardsArray);
+      return shuffled.slice(0, 6);
+    } else if (filteredCardsArray.length < 6) {
+      return filteredCardsArray;
+    }
+  }
+
+  // function to show terms and definitions randomly on a page
+  getShuffledPairs(matchCards: any[]): any[] {
+    const pairs = matchCards.flatMap(card => [
+      { type: 'term', value: card.term, id: card._id },
+      { type: 'definition', value: card.definition, id: card._id }
+    ]);
+    return this.shuffleArray(pairs);
+  }
+  shuffledPairs: any[] = []; // Store shuffled pairs
+
+  initializeMatchMode() {
+    this.shuffledPairs = this.getShuffledPairs(this.matchCards);
+  }
+  selectedItems: any[] = []; // Store selected items
+
+  handleSelection(item: any) {
+    if (this.selectedItems.length < 2 && !this.selectedItems.includes(item)) {
+      this.selectedItems.push(item);
+      if (this.selectedItems.length === 2) {
+        setTimeout(() => {
+          this.checkMatch();
+        }, 100);
+      }
+    }
+  }
+
+  checkMatch() {
+    const [first, second] = this.selectedItems;
+
+    // Check if the pair is correct
+    if (first.id === second.id && first.type !== second.type) {
+      alert('Correct Match!');
+      // Remove matched items from `shusffledPairs`
+      this.shuffledPairs = this.shuffledPairs.filter(
+        pair => pair.id !== first.id
+      );
+      console.log('shuffledPairs after: ', this.shuffledPairs);
+    } else {
+      alert('Incorrect Match. Try Again.');
+    }
+
+    // Clear selection
+    this.selectedItems = [];
+    if (this.shuffledPairs.length === 0) {
+      setTimeout(() => {
+        alert("Great! You did it");
+        this.showMatchDiv = false;
+        this.showCardDiv = true;
+      }, 200);
+    }
+  }
+
 }

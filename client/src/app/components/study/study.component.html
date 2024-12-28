@@ -10,14 +10,13 @@
 <body class="bg-gray-50 text-gray-800 font-sans">
     <app-navbar></app-navbar>
 
+    <!-- main flashcard study page -->
     <main *ngIf="showCardDiv">
-        <!-- Subject Heading -->
         <h1
             class="flex items-center justify-center text-4xl font-display text-primary mt-12 font-bold text-center px-4">
             {{filteredCardList[currentCardIndex]?.subject}}
         </h1>
 
-        <!-- Buttons Section -->
         <div class="flex justify-center items-center flex-col md:flex-row h-auto mt-8 gap-16 px-4">
             <button (click)="showTest()"
                 class="bg-purple-500 h-32 w-52 rounded-lg hover:opacity-80 font-body text-xl text-white">
@@ -26,21 +25,19 @@
             <button class="bg-blue-500 h-32 w-52 rounded-lg hover:opacity-80 font-body text-xl text-white">
                 Pratice
             </button>
-            <button class="bg-red-500 h-32 w-52 rounded-lg hover:opacity-80 font-body text-xl text-white">
+            <button (click)="showMatch()"
+                class="bg-red-500 h-32 w-52 rounded-lg hover:opacity-80 font-body text-xl text-white">
                 Match
             </button>
         </div>
 
-        <!-- Flashcard Section -->
         <div (click)="toggleFlip()" class="flex justify-center items-center mt-12 px-4">
             <div class="card h-64 w-full max-w-3xl text-center" [@flipState]="flip">
-                <!-- Front (Question) -->
                 <div class="card-face front bg-card p-8 rounded-lg shadow-md">
                     <p class="text-center font-bold font-body text-2xl">
                         {{filteredCardList[currentCardIndex]?.term}}
                     </p>
                 </div>
-                <!-- Back (Answer) -->
                 <div class="card-face back bg-sub_card p-8 rounded-lg shadow-md">
                     <p class="text-center font-bold font-body text-xl">
                         {{ filteredCardList[currentCardIndex]?.definition }}
@@ -49,7 +46,6 @@
             </div>
         </div>
 
-        <!-- Navigation Section -->
         <div class="flex flex-wrap items-center justify-center gap-8 mt-6 mb-8 text-xl px-4">
             <button (click)="previousCard()"
                 class="bg-gray-400 rounded-full p-4 flex justify-center items-center hover:opacity-80 focus:ring-4 focus:ring-gray-300 transition"
@@ -69,6 +65,7 @@
         </div>
     </main>
 
+    <!-- test/quiz page -->
     <section *ngIf="showTestDiv" id="quiz-test" class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <h1
             class="flex items-center justify-center text-2xl sm:text-3xl md:text-4xl font-display text-primary mt-12 mb-6 font-bold text-center">
@@ -95,7 +92,11 @@
             </div>
             <div class="flex items-center justify-center text-lg sm:text-xl font-body text-white bg-primary rounded-lg m-6 sm:m-12 px-4 sm:px-6 py-2 sm:py-3 hover:opacity-80 hover:cursor-pointer"
                 (click)="testResult()">
+                @if(isResultCalculated){
+                <i class="fa-solid fa-circle-notch fa-spin text-3xl text-white"></i>
+                } @else {
                 Submit
+                }
             </div>
 
         </form>
@@ -113,6 +114,24 @@
                 <p>{{ testPercentage }}%</p>
             </div>
         </div>
+    </section>
+
+    <!-- match page -->
+    <section *ngIf="showMatchDiv">
+        <h1
+            class="flex items-center justify-center text-2xl sm:text-3xl md:text-4xl font-display text-primary mt-12 mb-6 font-bold text-center">
+            Match
+        </h1>
+        <p class="text-center text-xl font-body text-primary mx-6">Match all the terms with their definitions</p>
+        <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-4 mx-4 my-8 sm:mx-16">
+            <div *ngFor="let item of shuffledPairs"
+                class="flex justify-center items-center bg-card border text-lg rounded-lg p-6 font-semibold cursor-pointer"
+                [ngClass]="{'bg-secondary text-white': selectedItems.includes(item), 'bg-card': !selectedItems.includes(item)}"
+                (click)="handleSelection(item)">
+                {{ item.value }}
+            </div>
+        </div>
+
     </section>
 
 </body>
