@@ -108,7 +108,7 @@ export class StudyComponent implements OnInit {
       this.router.navigate(['/auth']);
     }
     const user_id = decodedToken.user_id;
-    this.getCardService.getCards(user_id).subscribe({
+    this.getCardService.getExploreCards().subscribe({
       next: (data) => {
         this.cardList = data.cards;
         this.subject = this.route.snapshot.paramMap.get('subject') || '';

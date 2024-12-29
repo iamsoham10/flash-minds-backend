@@ -18,7 +18,7 @@ export class ExploreComponent implements OnInit {
   ngOnInit(): void {
     this.getAllCards();
   }
-  constructor(private getCardService: GetCardService, private http: HttpClient, private router: Router) { }
+  constructor(private getCardService: GetCardService, private router: Router) { }
   cardList: any[] = [];
   categorizedSubjects: { [key: string]: string[] } = {};
   getAllCards() {
@@ -30,7 +30,7 @@ export class ExploreComponent implements OnInit {
       this.router.navigate(['/auth']);
     }
     const user_id = decodedToken.user_id;
-    this.getCardService.getCards(user_id).subscribe({
+    this.getCardService.getExploreCards().subscribe({
       next: (data) => {
         this.cardList = data.cards;
         console.log('cards fetched successfully', this.cardList);
