@@ -46,7 +46,7 @@ export class LandingPageComponent {
 
   studyModes = [
     { icon: 'fas fa-brain', iconColor: 'text-purple-500', title: 'Quiz Mode', description: 'Test your knowledge with interactive quizzes. Perfect for quick reviews and focused learning.' },
-    { icon: 'fas fa-history', iconColor: 'text-blue-500', title: 'Spaced Repetition', description: 'Master concepts with scientifically proven spaced repetition techniques for long-term retention.' },
+    { icon: 'fas fa-history', iconColor: 'text-blue-500', title: 'Practice Mode', description: 'Strengthen your understanding by actively engaging with terms and definitions. Mark your progress as you learn with instant feedback.' },
     { icon: 'fas fa-columns', iconColor: 'text-red-500', title: 'Match Mode', description: 'Match terms with their definitions in a timed challenge. A fun and fast-paced way to learn.' }
   ];
 }

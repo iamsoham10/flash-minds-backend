@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { NavbarComponent } from "../navbar/navbar.component";
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { GetCardService } from '../../services/get-card.service';
@@ -241,4 +241,81 @@ export class StudyComponent implements OnInit {
     }
   }
 
+
+  // practice mode
+  showPracticeDiv = false;
+  showPractice() {
+    this.showPracticeDiv = true;
+    this.showCardDiv = false;
+    this.filteredCardListSignal.set(this.getFilteredCards());
+    this.initializeCardStates();
+    console.log('Filtered cards: ', this.filteredCardListSignal());
+  }
+
+
+  initializeCardStates() {
+    const filteredCards = this.filteredCardListSignal();
+    console.log("cards:", filteredCards);
+    filteredCards.forEach(card => {
+      this.cardStates.set(card._id, {
+        showAnswer: false,
+        learned: null,
+        showAnswerDiv: false,
+        showButtonDiv: false,
+        showAnswerButton: true,
+      });
+    });
+  }
+
+  showAnswerDiv = false;
+  showButtonDiv = false;
+  showAnswerButton = true;
+
+  showAnswer(cardId: string) {
+    const state = this.cardStates.get(cardId);
+    if (state) {
+      state.showAnswer = true;
+      state.showAnswerDiv = true;
+      state.showButtonDiv = true;
+      state.showAnswerButton = false;
+    }
+  }
+
+  markAsLearned(cardId: string, learned: boolean) {
+    const state = this.cardStates.get(cardId);
+    if (state) {
+      state.learned = learned;
+      state.showButtonDiv = false;
+      // Check if all cards have been marked
+      const allMarked = Array.from(this.cardStates.values()).every(
+        cardState => cardState.learned !== null
+      );
+      // If all cards are marked, calculate the results
+      if (allMarked) {
+        this.calculateResult();
+      }
+    }
+  }
+
+
+  calculateResult() {
+    let learned = 0;
+    let notLearned = 0;
+    this.cardStates.forEach(state => {
+      if (state.learned === true) learned++;
+      if (state.learned === false) notLearned++;
+    });
+    alert(`Learned: ${learned}, Not learned: ${notLearned}`);
+    setTimeout(() => {
+      this.showPracticeDiv = false;
+      this.showCardDiv = true;
+    }, 200);
+  }
+
+  showPracticeDivSignal = signal(false);
+  filteredCardListSignal = signal(this.filteredCardList || []);
+  getFilteredCards() {
+    return this.filteredCardList.filter(card => card && card._id);
+  }
+  cardStates = new Map<string, { showAnswer: boolean; learned: boolean | null; showAnswerButton: boolean; showAnswerDiv: boolean; showButtonDiv: boolean }>();
 }

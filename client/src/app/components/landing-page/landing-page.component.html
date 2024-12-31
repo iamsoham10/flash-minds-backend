@@ -57,12 +57,12 @@
                 Learn Smarter with FlashMinds
             </h1>
             <p class="font-display text-xl py-8 m-4 font-semibold text-primary">
-                Create, study, and share flashcards. Build streaks and stay motivated to achieve your learning goals!
+                Create and study flashcards. Build streaks and stay motivated to achieve your learning goals!
             </p>
             <div id="hero-buttons" class="gap-8 mt-10 flex flex-col sm:flex-row">
                 <ng-container *ngFor="let button of heroButtons">
                     <button [routerLink]="button.path"
-                        class="text-body text-white bg-secondary font-semibold px-8 py-3 rounded-lg">
+                        class="text-body text-white bg-secondary font-semibold px-8 py-3 rounded-lg w-40">
                         {{ button.label }}
                     </button>
                 </ng-container>
