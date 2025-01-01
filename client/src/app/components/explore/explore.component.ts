@@ -45,8 +45,8 @@ export class ExploreComponent implements OnInit {
   private getCategoryMapping(): { [key: string]: string[] } {
     return {
       Engineering: ["Electrical Engineering", "Chemical Engineering", 'Computer Engineering', 'Mechanical Engineering', 'Civil Engineering'],
-      Languages: ["English", 'French', 'German', 'Spanish', 'Japanese'],
-      Science: ['Physics', 'Chemistry', 'Biology'],
+      Languages: ["English", 'French', 'German', 'Russian', 'Japanese'],
+      Business: ['Marketing', 'Management', 'Supply Chain', 'Finance', 'Accounting'],
     }
   }
 

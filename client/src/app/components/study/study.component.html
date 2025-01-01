@@ -158,15 +158,17 @@
 
                     <div *ngIf="cardStates.get(card._id)?.showAnswerButton" class="flex justify-center items-center">
                         <button (click)="showAnswer(card._id)"
-                            class="border rounded-lg text-white px-6 py-3 mt-16 mb-8">Show
+                            class="border rounded-lg text-white px-6 py-3 mt-16 mb-8 hover:bg-white hover:text-primary hover:border-primary">Show
                             Answer</button>
                     </div>
 
                     <div *ngIf="cardStates.get(card._id)?.showButtonDiv" class="flex justify-center items-center gap-6">
                         <button (click)="markAsLearned(card._id, true)"
-                            class="border rounded-lg text-white px-6 py-3 mt-16 mb-8 w-40">Got it?</button>
+                            class="border rounded-lg text-white px-6 py-3 mt-16 mb-8 w-40 hover:bg-white hover:text-primary hover:border-primary">Got
+                            it?</button>
                         <button (click)="markAsLearned(card._id, false)"
-                            class="border rounded-lg text-white px-6 py-3 mt-16 mb-8 w-40">Didn't get it</button>
+                            class="border rounded-lg text-white px-6 py-3 mt-16 mb-8 w-40 hover:bg-white hover:text-primary hover:border-primary">Didn't
+                            get it</button>
                     </div>
                 </div>
             </div>

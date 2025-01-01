@@ -4,6 +4,7 @@ import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Va
 import { AddCardService } from '../../services/add-card.service';
 import { CommonModule } from '@angular/common';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-set',
@@ -16,7 +17,7 @@ export class CreateSetComponent implements OnInit {
   cards: FormGroup[] = [];
   createSetForm!: FormGroup;
 
-  constructor(private addSetService: AddCardService) { }
+  constructor(private addSetService: AddCardService, private router: Router) { }
 
   ngOnInit(): void {
     this.createSetForm = new FormGroup({
@@ -49,7 +50,10 @@ export class CreateSetComponent implements OnInit {
       this.addSetService.addSet(this.createSetForm.value).subscribe(
         (response) => {
           this.isSetSaved = false;
-          console.log("set created");
+          alert("set created successfully");
+          setTimeout(() => {
+            this.router.navigate(['/dashboard']);
+          }, 200);
         },
         (error) => {
           this.isSetSaved = false;
