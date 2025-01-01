@@ -47,7 +47,6 @@ A full-stack Flashcards web application designed to help users to create and pra
 1. Clone the backend repository:
    ```bash
    git clone <backend-repo-url>
-   cd server
    ```
 2. Install dependencies:
    ```
@@ -62,19 +61,4 @@ A full-stack Flashcards web application designed to help users to create and pra
 4. Start the server by navgiating to '/client':
    ```
    npm run dev
-   ```
-
-### Frontend Setup
-
-1. Navigate to /client:
-   ```
-   cd client
-   ```
-2. Install dependencies:
-   ```
-   npm install
-   ```
-3. Run the development server:
-   ```
-   ng serve
    ```
